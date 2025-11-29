@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { FormData, INITIAL_FORM_DATA, LeadInfo, ProjectDetail } from './types';
 import StepLeadInfo from './components/StepLeadInfo';
@@ -44,7 +43,7 @@ const App: React.FC = () => {
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-600 text-white mb-4 shadow-lg shadow-indigo-600/30">
           <Layers className="w-7 h-7" />
         </div>
-        <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">LuxeTile Estimates</h1>
+        <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight">Bbizness Estimates</h1>
         <p className="text-slate-500 mt-2 text-lg">Premium Flooring & Tile Solutions</p>
       </div>
 
@@ -99,7 +98,7 @@ const App: React.FC = () => {
       </div>
       
       <p className="mt-8 text-slate-400 text-sm">
-        &copy; {new Date().getFullYear()} LuxeTile Inc. All rights reserved.
+        &copy; {new Date().getFullYear()} Bbizness Inc. All rights reserved.
       </p>
     </div>
   );

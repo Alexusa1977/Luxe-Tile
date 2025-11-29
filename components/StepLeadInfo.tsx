@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LeadInfo } from '../types';
 import { User, Mail, Phone, ChevronRight, MapPin, MessageSquare } from 'lucide-react';
@@ -170,7 +169,7 @@ const StepLeadInfo: React.FC<StepLeadInfoProps> = ({ data, updateData, onNext })
               Communication Authorization
             </label>
             <p className="text-slate-500 mt-1">
-              I authorize LuxeTile to send me the detailed estimate and project updates via email and SMS.
+              I authorize Bbizness to send me the detailed estimate and project updates via email and SMS.
             </p>
           </div>
         </div>
