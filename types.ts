@@ -43,12 +43,12 @@ export interface ProjectDetail {
   photos: File[];
 }
 
-export interface FormData {
+export interface EstimateData {
   lead: LeadInfo;
   project: ProjectDetail;
 }
 
-export const INITIAL_FORM_DATA: FormData = {
+export const INITIAL_FORM_DATA: EstimateData = {
   lead: {
     firstName: '',
     lastName: '',

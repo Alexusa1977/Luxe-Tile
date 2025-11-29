@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { FormData, INITIAL_FORM_DATA, LeadInfo, ProjectDetail } from './types';
+import { EstimateData, INITIAL_FORM_DATA, LeadInfo, ProjectDetail } from './types';
 import StepLeadInfo from './components/StepLeadInfo';
 import StepProjectInfo from './components/StepProjectInfo';
 import SuccessView from './components/SuccessView';
@@ -8,7 +9,7 @@ import { formatEmailBody } from './services/emailService';
 
 const App: React.FC = () => {
   const [step, setStep] = useState<number>(1);
-  const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
+  const [formData, setFormData] = useState<EstimateData>(INITIAL_FORM_DATA);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const updateLead = (data: Partial<LeadInfo>) => {

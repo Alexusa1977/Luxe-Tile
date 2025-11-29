@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { CheckCircle, Mail } from 'lucide-react';
-import { FormData } from '../types';
+import { EstimateData } from '../types';
 import { generateMailtoLink } from '../services/emailService';
 
-const SuccessView: React.FC<{ data: FormData }> = ({ data }) => {
+const SuccessView: React.FC<{ data: EstimateData }> = ({ data }) => {
   const mailtoLink = generateMailtoLink(data);
 
   return (

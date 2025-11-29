@@ -1,6 +1,7 @@
-import { FormData } from '../types';
 
-export const formatEmailBody = (data: FormData): string => {
+import { EstimateData } from '../types';
+
+export const formatEmailBody = (data: EstimateData): string => {
   const { lead, project } = data;
   return `
 New Estimate Request from Bbizness App
@@ -30,7 +31,7 @@ Marketing Consent: ${lead.marketingConsent ? 'Yes' : 'No'}
   `.trim();
 };
 
-export const generateMailtoLink = (data: FormData): string => {
+export const generateMailtoLink = (data: EstimateData): string => {
   const subject = encodeURIComponent(`Estimate Request: ${data.lead.firstName} ${data.lead.lastName}`);
   const body = encodeURIComponent(formatEmailBody(data));
   return `mailto:teamwin365@gmail.com?subject=${subject}&body=${body}`;

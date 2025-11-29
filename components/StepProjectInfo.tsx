@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { ProjectDetail, ProjectArea, TileType } from '../types';
 import { 
-  Home, 
   Utensils, 
   Bath, 
   Sofa, 
