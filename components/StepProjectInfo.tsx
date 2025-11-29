@@ -17,7 +17,8 @@ import {
   Hammer,
   Calendar as CalendarIcon,
   Upload,
-  X
+  X,
+  Loader2
 } from 'lucide-react';
 import { getMaterialAdvice } from '../services/geminiService';
 
@@ -26,9 +27,10 @@ interface StepProjectInfoProps {
   updateData: (data: Partial<ProjectDetail>) => void;
   onBack: () => void;
   onSubmit: () => void;
+  isSubmitting: boolean;
 }
 
-const StepProjectInfo: React.FC<StepProjectInfoProps> = ({ data, updateData, onBack, onSubmit }) => {
+const StepProjectInfo: React.FC<StepProjectInfoProps> = ({ data, updateData, onBack, onSubmit, isSubmitting }) => {
   const [showAiModal, setShowAiModal] = useState(false);
   const [aiQuestion, setAiQuestion] = useState('');
   const [aiResponse, setAiResponse] = useState('');
@@ -324,17 +326,28 @@ const StepProjectInfo: React.FC<StepProjectInfoProps> = ({ data, updateData, onB
       <div className="flex gap-4 pt-4">
         <button
           onClick={onBack}
-          className="flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all"
+          disabled={isSubmitting}
+          className="flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-all disabled:opacity-50"
         >
           <ChevronLeft className="w-5 h-5" />
           <span>Back</span>
         </button>
         <button
           onClick={onSubmit}
-          className="flex-[2] flex items-center justify-center space-x-2 py-3 rounded-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-indigo-500/30 transition-all"
+          disabled={isSubmitting}
+          className="flex-[2] flex items-center justify-center space-x-2 py-3 rounded-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-indigo-500/30 transition-all disabled:opacity-75 disabled:cursor-not-allowed"
         >
-          <span>Submit Request</span>
-          <CheckCircle2 className="w-5 h-5" />
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              <span>Sending Request...</span>
+            </>
+          ) : (
+            <>
+              <span>Submit Request</span>
+              <CheckCircle2 className="w-5 h-5" />
+            </>
+          )}
         </button>
       </div>
 

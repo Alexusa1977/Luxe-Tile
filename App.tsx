@@ -4,10 +4,12 @@ import StepLeadInfo from './components/StepLeadInfo';
 import StepProjectInfo from './components/StepProjectInfo';
 import SuccessView from './components/SuccessView';
 import { Layers } from 'lucide-react';
+import { formatEmailBody } from './services/emailService';
 
 const App: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const updateLead = (data: Partial<LeadInfo>) => {
     setFormData(prev => ({ ...prev, lead: { ...prev.lead, ...data } }));
@@ -22,17 +24,27 @@ const App: React.FC = () => {
   
   // In a real app, this would submit to an API
   const handleSubmit = () => {
-    console.log("Submitting:", formData);
+    setIsSubmitting(true);
     
-    // Simulate sending email to owner
-    console.log(`[System] Sending email notification to owner regarding new lead: ${formData.lead.email}`);
-    
-    // Simulate scheduling SMS/Email to client
-    if (formData.lead.marketingConsent) {
-        console.log(`[System] Scheduling automated estimate email/sms to client: ${formData.lead.email} / ${formData.lead.phone}`);
-    }
+    // Simulate network delay for sending email
+    setTimeout(() => {
+        const emailBody = formatEmailBody(formData);
+        
+        console.group("📧 Email Service Simulation");
+        console.log(`To: teamwin365@gmail.com`);
+        console.log(`Subject: New Estimate Request - ${formData.lead.firstName} ${formData.lead.lastName}`);
+        console.log(`Body:\n${emailBody}`);
+        console.log("---------------------------------------------------");
+        
+        if (formData.lead.marketingConsent) {
+            console.log(`[System] Queued confirmation email to client: ${formData.lead.email}`);
+            console.log(`[System] Queued confirmation SMS to client: ${formData.lead.phone}`);
+        }
+        console.groupEnd();
 
-    nextStep(); 
+        setIsSubmitting(false);
+        nextStep(); 
+    }, 2000);
   };
 
   return (
@@ -89,6 +101,7 @@ const App: React.FC = () => {
               updateData={updateProject} 
               onBack={prevStep}
               onSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
             />
           )}
           {step === 3 && (

@@ -1,9 +1,12 @@
 
 import React from 'react';
-import { CheckCircle, Calendar } from 'lucide-react';
+import { CheckCircle, Mail } from 'lucide-react';
 import { FormData } from '../types';
+import { generateMailtoLink } from '../services/emailService';
 
 const SuccessView: React.FC<{ data: FormData }> = ({ data }) => {
+  const mailtoLink = generateMailtoLink(data);
+
   return (
     <div className="text-center py-12 px-6 animate-in zoom-in-95 duration-500">
       <div className="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
@@ -21,7 +24,7 @@ const SuccessView: React.FC<{ data: FormData }> = ({ data }) => {
          Project Location: {data.lead.street}, {data.lead.city}, {data.lead.state} {data.lead.zip}
       </p>
       
-      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm max-w-sm mx-auto text-left">
+      <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm max-w-sm mx-auto text-left mb-6">
         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Project Summary</h3>
         <div className="space-y-3 text-sm">
            <div className="flex justify-between">
@@ -69,12 +72,26 @@ const SuccessView: React.FC<{ data: FormData }> = ({ data }) => {
         </div>
       </div>
 
-      <button 
-        onClick={() => window.location.reload()}
-        className="mt-8 text-indigo-600 hover:text-indigo-800 font-medium"
-      >
-        Start a New Estimate
-      </button>
+      <div className="space-y-4">
+        <a 
+          href={mailtoLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center space-x-2 px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors w-full max-w-sm"
+        >
+          <Mail className="w-4 h-4" />
+          <span>Send Details to Bbizness via Email</span>
+        </a>
+        
+        <div>
+            <button 
+                onClick={() => window.location.reload()}
+                className="text-indigo-600 hover:text-indigo-800 font-medium text-sm"
+            >
+                Start a New Estimate
+            </button>
+        </div>
+      </div>
     </div>
   );
 };
