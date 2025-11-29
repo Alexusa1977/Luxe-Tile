@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { LeadInfo } from '../types';
-import { User, Mail, Phone, ChevronRight, MapPin } from 'lucide-react';
+import { User, Mail, Phone, ChevronRight, MapPin, MessageSquare } from 'lucide-react';
 
 interface StepLeadInfoProps {
   data: LeadInfo;
@@ -18,7 +18,8 @@ const StepLeadInfo: React.FC<StepLeadInfoProps> = ({ data, updateData, onNext })
     data.street &&
     data.city &&
     data.state &&
-    data.zip;
+    data.zip &&
+    data.marketingConsent;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -149,6 +150,28 @@ const StepLeadInfo: React.FC<StepLeadInfoProps> = ({ data, updateData, onNext })
                 required
               />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-100 mt-4">
+        <div className="flex items-start space-x-3">
+          <div className="flex h-6 items-center">
+            <input
+              id="consent"
+              type="checkbox"
+              checked={data.marketingConsent}
+              onChange={(e) => updateData({ marketingConsent: e.target.checked })}
+              className="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer"
+            />
+          </div>
+          <div className="text-sm leading-snug">
+            <label htmlFor="consent" className="font-medium text-slate-900 cursor-pointer">
+              Communication Authorization
+            </label>
+            <p className="text-slate-500 mt-1">
+              I authorize LuxeTile to send me the detailed estimate and project updates via email and SMS.
+            </p>
           </div>
         </div>
       </div>

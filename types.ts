@@ -28,6 +28,7 @@ export interface LeadInfo {
   city: string;
   state: string;
   zip: string;
+  marketingConsent: boolean;
 }
 
 export interface ProjectDetail {
@@ -57,6 +58,7 @@ export const INITIAL_FORM_DATA: FormData = {
     city: '',
     state: '',
     zip: '',
+    marketingConsent: false,
   },
   project: {
     area: [ProjectArea.KITCHEN], // Default as array

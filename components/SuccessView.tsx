@@ -11,8 +11,10 @@ const SuccessView: React.FC<{ data: FormData }> = ({ data }) => {
       </div>
       <h2 className="text-3xl font-bold text-slate-900 mb-4">Request Received!</h2>
       <p className="text-slate-600 mb-2 max-w-md mx-auto">
-        Thanks, {data.lead.firstName}. We have received your request.
-        Our team will review your project details and contact you at {data.lead.phone} within 24 hours.
+        Thanks, {data.lead.firstName}. We have successfully received your project details.
+      </p>
+      <p className="text-indigo-600 font-medium mb-8 max-w-md mx-auto bg-indigo-50 p-3 rounded-lg border border-indigo-100">
+        We will send the formal estimate request to your email ({data.lead.email}) and via SMS to {data.lead.phone} shortly.
       </p>
       
       <p className="text-sm text-slate-400 mb-8 max-w-md mx-auto">

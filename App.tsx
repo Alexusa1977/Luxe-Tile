@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FormData, INITIAL_FORM_DATA, LeadInfo, ProjectDetail } from './types';
 import StepLeadInfo from './components/StepLeadInfo';
@@ -23,6 +24,15 @@ const App: React.FC = () => {
   // In a real app, this would submit to an API
   const handleSubmit = () => {
     console.log("Submitting:", formData);
+    
+    // Simulate sending email to owner
+    console.log(`[System] Sending email notification to owner regarding new lead: ${formData.lead.email}`);
+    
+    // Simulate scheduling SMS/Email to client
+    if (formData.lead.marketingConsent) {
+        console.log(`[System] Scheduling automated estimate email/sms to client: ${formData.lead.email} / ${formData.lead.phone}`);
+    }
+
     nextStep(); 
   };
 
